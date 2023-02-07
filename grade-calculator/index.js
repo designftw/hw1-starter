@@ -27,6 +27,7 @@ let app = createApp({
 			let sum = 0;
 
 			for (let hw of this.homeworks) {
+				// Check that it is a number, and the number is non-negative
 				if (hw >= 0) {
 					sum += hw;
 					done++;
@@ -42,7 +43,7 @@ let app = createApp({
 		 * Add a new blank homework	to the list.
 		 * Does not prevent more homeworks than 12 from being added.
 		 */
-		addHomework (i) {
+		addHomework () {
 			this.homeworks.push(null);
 		}
 	}

@@ -5,11 +5,18 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Grade calculator</title>
+	<script src="index.js" type="module"></script>
 </head>
 <body>
 
 <div id="grade_calc">
-	<button @click="addHomework" :disabled="homeworks.length >= 12">Add homework</button>
+	<div>
+		Participation (studio):
+		<input v-model="participation.studio" /> / 100
+	</div>
+	<div>{{ homeworks.length }} homeworks:</div>
+	<button @click="addHomework()">Add homework</button>
+	<div>Projected class grade: {{ calculatedGrade }}</div>
 </div>
 
 </body>
