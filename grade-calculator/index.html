@@ -8,16 +8,9 @@
 </head>
 <body>
 
-<v-app id="grade_calc" data='{
-	"participation": {
-		"studio": null,
-		"feedback": null,
-		"other": null
-	},
-	"homeworks": [null]
-}'>
+<div id="grade_calc">
 	<button @click="addHomework" :disabled="homeworks.length >= 12">Add homework</button>
-</v-app>
+</div>
 
 </body>
 </html>
