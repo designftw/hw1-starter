@@ -1,50 +1,59 @@
-import { createApp } from "https://mavue.mavo.io/mavue.js";
+import { createApp } from "vue";
 
-let app = createApp({
-	data: {
-		participation: {
-			studio: null,
-			feedback: null,
-			other: null
-		},
-		homeworks: [null]
-	},
+createApp({
+  template: "#grade_calc",
 
-	computed: {
-		/**
-		 * Final grade in the class (number)
-		 */
-		calculatedGrade () {
-			let p = this.participation;
-			return 0.15 * p.studio + 0.05 * p.feedback + 0.05 * p.other + .75 * this.homeworkAverage;
-		},
+  data() {
+    return {
+      participation: {
+        studio: null,
+        feedback: null,
+        other: null,
+      },
+      homeworks: [null],
+    };
+  },
 
-		/**
-		 * Returns the average of all homeworks that have been graded (number)
-		 */
-		homeworkAverage () {
-			let done = 0;
-			let sum = 0;
+  computed: {
+    /**
+     * Final grade in the class (number)
+     */
+    calculatedGrade() {
+      let p = this.participation;
+      return (
+        0.15 * p.studio +
+        0.05 * p.feedback +
+        0.05 * p.other +
+        0.75 * this.homeworkAverage
+      );
+    },
 
-			for (let hw of this.homeworks) {
-				// Check that it is a number, and the number is non-negative
-				if (hw >= 0) {
-					sum += hw;
-					done++;
-				}
-			}
+    /**
+     * Returns the average of all homeworks that have been graded (number)
+     */
+    homeworkAverage() {
+      let done = 0;
+      let sum = 0;
 
-			return sum / done;
-		}
-	},
+      for (let hw of this.homeworks) {
+        // Check that it is a number, and the number is non-negative
+        if (hw >= 0) {
+          sum += hw;
+          done++;
+        }
+      }
 
-	methods: {
-		/**
-		 * Add a new blank homework	to the list.
-		 * Does not prevent more homeworks than 12 from being added.
-		 */
-		addHomework () {
-			this.homeworks.push(null);
-		}
-	}
-}, "#grade_calc");
+      return sum / done;
+    },
+  },
+
+  methods: {
+    /**
+     * Add a new blank homework	to the list.
+     * Does not prevent more homeworks than 12 from being added.
+     */
+    addHomework() {
+      this.homeworks.push(null);
+    },
+  },
+}).mount("#app");
